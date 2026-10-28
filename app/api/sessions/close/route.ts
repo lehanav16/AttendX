@@ -1,0 +1,4 @@
+import { NextResponse } from "next/server";
+import { db } from "@/lib/db";
+import { requireRole } from "@/lib/auth";
+export async function POST(request:Request){const user=await requireRole("faculty");if(!user)return NextResponse.json({success:false,message:"Faculty login required."},{status:401});try{const body=await request.json();const id=Number(body.sessionId);if(!Number.isInteger(id)||id<=0)return NextResponse.json({success:false,message:"A valid session is required."},{status:400});const result=await db.query(`UPDATE attendance_sessions SET status='closed' WHERE id=$1 AND faculty_id=$2 AND status='active' RETURNING id`,[id,user.profileId]);if(!result.rowCount)return NextResponse.json({success:false,message:"Active session not found."},{status:404});return NextResponse.json({success:true});}catch(error){console.error(error);return NextResponse.json({success:false,message:"Could not close session."},{status:500});}}
