@@ -29,8 +29,6 @@ export default function Home() {
   }
 
   async function login(e: React.FormEvent<HTMLFormElement>) {
-    console.log("LOGIN HANDLER RUNNING");
-    alert("Login handler is running!");
     e.preventDefault();
 
     if (loading) return;
@@ -288,7 +286,6 @@ export default function Home() {
 
               <button
                 type="submit"
-                onClick={() => alert("Button click works!")}
                 disabled={loading}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3.5 font-semibold text-white transition hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-60"
               >
@@ -322,34 +319,16 @@ export default function Home() {
                 )}
               </button>
             </form>
-
-            {/* Demo credentials */}
-            <div className="mt-7 rounded-xl border border-slate-700 bg-slate-800/70 p-4">
-              <p className="text-sm font-semibold text-slate-200">
-                Demo account
-              </p>
-
-              <p className="mt-3 text-xs font-medium uppercase tracking-wide text-slate-400">
-                {role} login
-              </p>
-
-              <p className="mt-1 break-all text-sm text-slate-200">
-                {role === "student"
-                  ? "student@attendx.demo"
-                  : "faculty@attendx.demo"}
-              </p>
-
-              <p className="mt-1 break-all text-sm text-slate-400">
-                {role === "student"
-                  ? "AttendXStudent2026!"
-                  : "AttendXFaculty2026!"}
-              </p>
-
-              <p className="mt-3 text-xs leading-5 text-slate-500">
-                These are development demo credentials. Keep real account
-                passwords private.
-              </p>
-            </div>
+            
+<div className="mt-3 text-center">
+  <button
+    type="button"
+    onClick={() => alert("Password reset is currently unavailable.")}
+    className="text-sm font-medium text-indigo-400 transition hover:text-indigo-300 hover:underline"
+  >
+    Forgot Password?
+  </button>
+</div>
 
             <p className="mt-6 text-center text-xs text-slate-500">
               AttendX · Smart Attendance Management
